@@ -15,11 +15,10 @@
         <button onClick=callPRR()>Posição Relativa (reta/circunfencia)</button>
     </div> <br>
     <div id="lugar" style="*{ margin-right: 3px;}display: flex; flex-direction: row; font-size: 30px;">
-          
     </div>
     <script>
         function callEQG() {
-            document.getElementById("lugar").innerHTML = "<div>  <span>Equação: (X </span> <input type='number' id='x' name='x' style='width:45px; font-size: 30px;'> <span>)² + (Y </span> <input type='number' id='y' name='y' style='width:45px; font-size: 30px';> <span>)² = </span> <input type='number' id='r' name='r' style='width:45px; font-size: 30px;' min='0'><span>²</span> <br> <br> <button onClick=resultEQG()>Enviar</button> </div> </div>";
+            document.getElementById("lugar").innerHTML = "<div> <h3>Teoria</h3> <p>Para encontrar a equação geral de uma circunferência, primeiramente precisaremos encontrar sua equação reduzida, e faremos isso da seguinte forma:</p> <br> <div style='display: flex; flex-direction:row;'> <div> <img src='img/Circulo.png'> </div> <div> <span>Utilizando os dados da imagem, iremos completar a Equação Reduzida da Circunferência, sendo ela: (X' − X'') + (Y' − Y'') = R².</span> <br> <span>X''e Y'' são as coordenadas do centro da circunferência, que, neste caso, são 3 e 4, respectivamente. O R (raio) normalmente será dado pelo exercício, mas pode também ser percebido visualizando a circunferência, neste caso sendo 2. </span> <br> <span>Após substituirmos os valores na equação, ficamos com: (X − 3)² + (Y − 4)² = 2².</span> <br> <span>E, após solucionarmos os produtos notáveis e organizarmos a equação, ficamos com:</span> <br> <span> X² + Y² - 6X - 8Y +21 = 0, a Equação Geral desta circunferência.</span> </div> </div> <h3>Calculadora: </h3> <br> <span>Equação: (X </span> <input type='number' id='x' name='x' style='width:45px; font-size: 30px;'> <span>)² + (Y </span> <input type='number' id='y' name='y' style='width:45px; font-size: 30px';> <span>)² = </span> <input type='number' id='r' name='r' style='width:45px; font-size: 30px;' min='0'><span>²</span> <br> <br> <button onClick=resultEQG()>Enviar</button> </div> </div>";
         }
         function resultEQG() {
             let x = document.getElementById("x").value;
@@ -27,6 +26,7 @@
             let r = document.getElementById("r").value;
             let sinalX = "";
             let sinalY = "";
+            let sinalR = "";
             r = r * 1;
 
             if (x * 1 < 0) {
@@ -41,12 +41,16 @@
             } else {
                 sinalY = "+";
             }
+            if ((x * x + y * y - r * r) * 1 < 0) {
+            } else {
+                sinalR = "+";
+            }
 
-            let resultado = "X² + Y² " + sinalX + " " + 2 * x + "X " + sinalY + " " + 2 * y + "Y " + (x * x + y * y - r * r) + " = 0";
+            let resultado = "X² + Y² " + sinalX + " " + 2 * x + "X " + sinalY + " " + 2 * y + "Y " + sinalR + (x * x + y * y - r * r) + " = 0";
             document.getElementById("lugar").innerHTML = resultado;
         } 
         function callEQR() {
-             document.getElementById("lugar").innerHTML = "<div><span>Equação: X² + Y² </span> <input type='number' id='x' name='x' style='width:45px; font-size: 30px;'> <span>X </span> <input type='number' id='y' name='y' style='width:45px; font-size: 30px';> <span>Y </span> <input type='number' id='t' name='t' style='width:45px; font-size: 30px;'> <span> = 0</span><br> <br> <button onClick=resultEQR()>Enviar</button> </div>";
+            document.getElementById("lugar").innerHTML = "<div> <h3>Teoria</h3> <p>Pode ser pedido para encontrar a Equação Reduzida da Circunferência utilizando a Equação Geral. Resolveremos isso da seguinte forma:</p> <br> <div> <span> Utilizaremos a seguinte equação como exemplo: X² + Y² - 2X - 6Y - 15 = 0. Sabendo que a equação se originou de um produto notável, apenas precisamos nos lembrar de sua regra: A² + 2AB + 𝐵². Com ela em mente, conseguimos perceber que −2x e −6Y surgiram de 2AB. Isso nos permite encontrar os valores de B, para X e para Y.</span> <br> <br> <span> Para X: 2 · X · Bx = - 2X  ⟹ Bx = -1 ㅤㅤㅤㅤㅤㅤ Para Y: 2 · Y · By = - 6Y ⟹ By = -3. </span> <br> <br> <span>Após substituirmos os valores na equação, ficamos com: (X - 1)² + (Y - 3)² = 5², a Equação Reduzida desta circunferência.</span> <br> </div>  <div><h3>Calculadora</h3> <span>Equação: X² + Y² </span> <input type='number' id='x' name='x' style='width:45px; font-size: 30px;'> <span>X </span> <input type='number' id='y' name='y' style='width:45px; font-size: 30px';> <span>Y </span> <input type='number' id='t' name='t' style='width:45px; font-size: 30px;'> <span> = 0</span><br> <br> <button onClick=resultEQR()>Enviar</button>";
         }
         function resultEQR() {
             let x = document.getElementById("x").value ;
@@ -80,7 +84,7 @@
             document.getElementById("lugar").innerHTML = resultado;
         } 
         function callPRP() {
-            document.getElementById("lugar").innerHTML = "<div> <span>Ponto: (</span> <input type='number' id='pontoX' name='pontoX' style='width:45px; font-size: 30px;'> <span>,</span> <input type='number' id='pontoY' name='pontoY' style='width:45px; font-size: 30px';> <span>)</span> <br> <br> <span>Usando: </span><select id='eq' onChange='callPRP0()'> <option value='1'>Geral</option> <option value='2'>Reduzida</option> </select> <div id='lugares'></div> </div>";
+            document.getElementById("lugar").innerHTML = "<div> <h3>Teoria</h3> <div style='display:flex; flex-direction: row;'> <div> <img src='img/ponto.png' style='width:30vw; height:15vw;'> </div> <span>A posição relativa de um ponto com a circunfêrencia diz respeito a distancia de tal ponto do centro da circunferência, no primeiro caso vemos que a distancia entre o ponto e o centro da circumferência é igual ao raio da circunferência, chamamos este ponto de Pertencente, no segundo caso a distancia entre o ponto e o centro é maior que raio, chamamos este ponto de Externo, e no terceiro caso a distancia entre o ponto e o centro é menor que raio, chamamos este ponto de Interno. </span> </div> <br> <br> <div> <h3>Calculadora </h3><span>Ponto: (</span> <input type='number' id='pontoX' name='pontoX' style='width:45px; font-size: 30px;'> <span>,</span> <input type='number' id='pontoY' name='pontoY' style='width:45px; font-size: 30px';> <span>)</span> <br> <br> <span>Usando: </span><select id='eq' onChange='callPRP0()'> <option value='1'>Geral</option> <option value='2'>Reduzida</option> </select> <div id='lugares'></div> </div>";
         }
         function callPRP0 () {
             let a = document.getElementById("eq").value;
